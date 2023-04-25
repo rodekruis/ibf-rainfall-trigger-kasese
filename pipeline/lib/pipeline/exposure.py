@@ -44,11 +44,9 @@ class Exposure:
                 values['source'] + self.leadTimeLabel
 
             if os.getenv('TRIGGER') == 'False': # filter only events has high impact
-            #     for d in stats:
-            #         d.update((k, 0) for k, v in d.items() if k=="amount")
-                os.replace(self.disasterExtentEmptyRaster, self.disasterExtentRaster)
-            stats = self.calcAffected(self.disasterExtentRaster, indicator, values['rasterValue'])
-
+                stats = self.calcAffected(self.disasterExtentEmptyRaster, indicator, values['rasterValue'])
+            else:
+                stats = self.calcAffected(self.disasterExtentRaster, indicator, values['rasterValue'])
             result = {
                 'countryCodeISO3': self.countryCodeISO3,
                 'exposurePlaceCodes': stats,
